@@ -38,55 +38,33 @@ Auto-deploys on main branch pushes
 
 🚀 Deploy Instructions
 1. Clone the repo
-bash
-Copy
-Edit
-git clone https://github.com/your-org/s3-bucket-website-hosting-terraform.git
-cd s3-bucket-website-hosting-terraform
+    git clone https://github.com/your-org/s3-bucket-website-hosting-terraform.git
+    cd s3-bucket-website-hosting-terraform
+
 2. Initialize and apply Terraform (optional local test)
-bash
-Copy
-Edit
-terraform init
-terraform plan
-terraform apply
-Or skip local runs and let GitHub Actions handle deployment.
+    terraform init
+    terraform plan
+    terraform apply
+    Or skip local runs and let GitHub Actions handle deployment.
 
 3. Push your changes to GitHub
-bash
-Copy
-Edit
-git add .
-git commit -m "Deploy S3 website with Terraform"
-git push origin main
-⚙️ GitHub Actions Workflow
-.github/workflows/deploy.yml:
+    git add .
+    git commit -m "Deploy S3 website with Terraform"
+    git push origin main
+    ⚙️ GitHub Actions Workflow
+    .github/workflows/deploy.yml:
 
 Runs on every push to main
+    Uses aws-actions/configure-aws-credentials to authenticate
+    Applies Terraform configuration
+    Uploads website content from oxer-html/ to S3 bucket
+    🌍 Access Your Site
+    Once deployed, visit:
+    http://<your-bucket-name>.s3-website.<region>.amazonaws.com
 
-Uses aws-actions/configure-aws-credentials to authenticate
-
-Applies Terraform configuration
-
-Uploads website content from oxer-html/ to S3 bucket
-
-🌍 Access Your Site
-Once deployed, visit:
-
-php-template
-Copy
-Edit
-http://<your-bucket-name>.s3-website.<region>.amazonaws.com
 Example:
+    http://my-tf-bucket-demo-2025-test.s3-website.ap-south-1.amazonaws.com
 
-arduino
-Copy
-Edit
-http://my-tf-bucket-demo-2025-test.s3-website.ap-south-1.amazonaws.com
 🧹 Clean Up
-To destroy resources created by Terraform:
-
-bash
-Copy
-Edit
-terraform destroy
+    To destroy resources created by Terraform:
+    terraform destroy
